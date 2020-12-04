@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wanneer ben je jarig?</title>
+
+
+    <script>
+
+        /**
+         * Berekend de leeftijd a.d.h.v. de ingevoerd datum
+         * @param b
+         * @returns {number}
+         */
+        function getAge(b) {
+            let nu = new Date();
+            let birthdate = new Date(b);
+            let age = nu.getFullYear() - birthdate.getFullYear();
+
+            // ben je voor of na de datum van vandaag jarig
+            let m = nu.getMonth() - birthdate.getMonth();
+            if (m < 0 || m === 0 && nu.getDate() < birthdate.getDate()) {
+                // indien je voor de datum van vandaag jarig bent, trek 1 van de age af
+                age--;
+            }
+            return age;
+        }
+    </script>
+
+</head>
+<body>
+
+    <main>
+        <div>Wanneer ben je jarig?</div>
+        <input type="date" id="kalender" name="kalender">
+        <div id="age">je ben x jaar</div>
+    </main>
+
+<script>
+     document.getElementById("kalender").addEventListener("change",function() {
+            // uitvoer dit stukje code na een change van kalender
+            let k = document.getElementById("kalender").value;
+            document.getElementById("age").innerText = `Je bent ${getAge(k)} jaar`;
+
+     });
+</script>
+</body>
+</html>
